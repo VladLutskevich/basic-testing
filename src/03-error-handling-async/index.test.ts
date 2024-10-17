@@ -1,30 +1,33 @@
-// Uncomment the code below and write your tests
-// import { throwError, throwCustomError, resolveValue, MyAwesomeError, rejectCustomError } from './index';
+/* eslint-disable prettier/prettier */
+import { throwError, throwCustomError, resolveValue, MyAwesomeError, rejectCustomError } from './index';
 
 describe('resolveValue', () => {
   test('should resolve provided value', async () => {
-    // Write your test here
+    const input = 'Resolved input';
+    await expect(resolveValue(input)).resolves.toBe(input);
   });
 });
 
 describe('throwError', () => {
   test('should throw error with provided message', () => {
-    // Write your test here
+    const input = 'Error';
+    expect(() => throwError(input)).toThrowError(new Error(input));
   });
 
   test('should throw error with default message if message is not provided', () => {
-    // Write your test here
+    const defaultInput = 'Oops!';
+    expect(() => throwError()).toThrowError(new Error(defaultInput));
   });
 });
 
 describe('throwCustomError', () => {
   test('should throw custom error', () => {
-    // Write your test here
+    expect(() => throwCustomError()).toThrowError(MyAwesomeError);
   });
 });
 
 describe('rejectCustomError', () => {
   test('should reject custom error', async () => {
-    // Write your test here
+    await expect(rejectCustomError()).rejects.toThrowError(MyAwesomeError);
   });
 });
